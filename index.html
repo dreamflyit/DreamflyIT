@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dreamfly IT</title>
+
+  <link rel="icon" type="image/png" href="Image/Brand-Logo.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <style>
+    :root{
+      --primary:#0f172a;
+      --primary-2:#172554;
+      --accent:#3b82f6;
+      --accent-2:#2563eb;
+      --bg:#eef2f7;
+      --card:#ffffff;
+      --text:#1e293b;
+      --muted:#64748b;
+      --border:#dbe4ef;
+      --shadow:0 10px 30px rgba(15,23,42,0.08);
+      --shadow-hover:0 18px 40px rgba(15,23,42,0.14);
+      --radius:18px;
+      --maxw:1280px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.65;
+      font-family:"Noto Sans Bengali", sans-serif;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+
+    [lang="en"]{
+      font-family:"Raleway", sans-serif;
+    }
+
+    .en-only{ display:inline; }
+    .bn-only{ display:none; }
+
+    body.bn-mode .en-only{ display:none !important; }
+    body.bn-mode .bn-only{ display:inline !important; }
+
+    .container{
+      width:min(100%, var(--maxw));
+      margin:0 auto;
+      padding:0 20px;
+    }
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(15,23,42,0.94);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .header-inner{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:#fff;
+      text-decoration:none;
+      min-width:0;
+    }
+
+    .brand-logo{
+      width:46px;
+      height:46px;
+      border-radius:12px;
+      object-fit:cover;
+      flex-shrink:0;
+      box-shadow:0 8px 18px rgba(0,0,0,0.18);
+    }
+
+    .brand-text{
+      font-size:1.08rem;
+      font-weight:800;
+      letter-spacing:0.2px;
+      white-space:nowrap;
+    }
+
+    .lang-btn{
+      border:none;
+      background:linear-gradient(135deg, var(--accent), var(--accent-2));
+      color:#fff;
+      padding:10px 16px;
+      border-radius:999px;
+      font-size:0.95rem;
+      font-weight:700;
+      cursor:pointer;
+      transition:transform .25s ease, box-shadow .25s ease, opacity .25s ease;
+      box-shadow:0 8px 18px rgba(59,130,246,0.28);
+      flex-shrink:0;
+    }
+
+    .lang-btn:hover{
+      transform:translateY(-2px);
+      opacity:.95;
+    }
+
+    .hero{
+      position:relative;
+      background:
+        radial-gradient(circle at top right, rgba(59,130,246,0.25), transparent 30%),
+        linear-gradient(135deg, var(--primary) 0%, var(--primary-2) 100%);
+      color:#fff;
+      padding:26px 0 44px;
+    }
+
+    .hero-card{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:24px;
+      padding:18px;
+      box-shadow:var(--shadow);
+      animation:fadeUp .85s ease both;
+    }
+
+    .hero-banner{
+      width:100%;
+      max-height:430px;
+      display:block;
+      object-fit:cover;
+      border-radius:18px;
+      box-shadow:var(--shadow);
+    }
+
+    .scroll-indicator{
+      margin-top:16px;
+      text-align:center;
+      font-size:1.15rem;
+      opacity:.8;
+      animation:bounce 1.8s infinite;
+      color:#ffffff;
+    }
+
+    .section{
+      padding:46px 0;
+    }
+
+    .section-title{
+      margin:0 0 22px;
+      font-size:1.9rem;
+      font-weight:800;
+      color:var(--primary);
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .services-track{
+      overflow-x:auto;
+      padding-bottom:6px;
+    }
+
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(5, minmax(210px, 1fr));
+      gap:18px;
+      min-width:1140px;
+    }
+
+    .service-card{
+      padding:14px;
+      text-align:center;
+      cursor:pointer;
+      transition:transform .28s ease, box-shadow .28s ease;
+      animation:fadeUp .7s ease both;
+    }
+
+    .service-card:hover{
+      transform:translateY(-6px) scale(1.02);
+      box-shadow:var(--shadow-hover);
+    }
+
+    .service-title{
+      margin:0;
+      font-size:1rem;
+      font-weight:800;
+      min-height:54px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .service-image{
+      width:100%;
+      height:138px;
+      object-fit:cover;
+      border-radius:14px;
+      display:block;
+      margin-top:10px;
+    }
+
+    .sub-services{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .42s ease, margin-top .42s ease, padding-top .42s ease;
+      text-align:left;
+      margin-top:0;
+      padding-top:0;
+    }
+
+    .sub-services.show{
+      max-height:1200px;
+      margin-top:12px;
+      padding-top:12px;
+      border-top:1px solid var(--border);
+    }
+
+    .sub-services ul{
+      margin:0;
+      padding-left:18px;
+    }
+
+    .sub-services li{
+      margin:7px 0;
+      color:var(--muted);
+      font-size:0.94rem;
+    }
+
+    .portfolio-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(280px, 1fr));
+      gap:18px;
+    }
+
+    .portfolio-card{
+      padding:20px;
+      animation:fadeUp .7s ease both;
+    }
+
+    .portfolio-card h3{
+      margin:0 0 12px;
+      font-size:1.15rem;
+      font-weight:800;
+    }
+
+    .portfolio-link{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      color:var(--accent);
+      font-weight:700;
+      margin:9px 0;
+      transition:transform .2s ease;
+    }
+
+    .portfolio-link:hover{
+      transform:translateX(4px);
+    }
+
+    .portfolio-link i{
+      width:18px;
+      text-align:center;
+    }
+
+    .portfolio-link img{
+      width:18px;
+      height:18px;
+      object-fit:contain;
+      flex-shrink:0;
+    }
+
+    /* প্রোফাইল কার্ড ছোট এবং মার্জিত করা হয়েছে */
+    .profile-card{
+      display:grid;
+      grid-template-columns:130px 1fr;
+      gap:20px;
+      align-items:center;
+      padding:20px;
+      max-width: 1280px;
+      margin: 30px auto;
+      animation:fadeUp .7s ease both;
+    }
+
+    .profile-image{
+      width:130px;
+      height:130px;
+      object-fit:cover;
+      border-radius:50%;
+      display:block;
+      margin:0 auto;
+      border:4px solid #fff;
+      box-shadow:var(--shadow);
+    }
+
+    .profile-name{
+      margin:0 0 4px;
+      font-size:1.6rem;
+      font-weight:800;
+      color:var(--accent);
+      line-height:1.2;
+    }
+
+    .profile-role{
+      margin:0 0 10px;
+      font-size:0.92rem;
+      font-weight:700;
+      color: var(--primary);
+    }
+
+    .profile-desc{
+      margin:0;
+      font-size: 0.92rem;
+      color:var(--muted);
+      line-height: 1.5;
+    }
+
+    .contact-card{
+      padding:22px;
+      animation:fadeUp .7s ease both;
+    }
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(250px, 1fr));
+      gap:16px;
+    }
+
+    .contact-link{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:15px 16px;
+      text-decoration:none;
+      color:var(--primary);
+      font-weight:700;
+      box-shadow:var(--shadow);
+      transition:transform .25s ease, box-shadow .25s ease;
+    }
+
+    .contact-link:hover{
+      transform:translateY(-3px);
+      box-shadow:var(--shadow-hover);
+    }
+
+    .contact-link i{
+      width:20px;
+      text-align:center;
+      font-size:1.1rem;
+      color:var(--accent);
+    }
+
+    .site-footer{
+      padding:28px 20px 42px;
+      text-align:center;
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(26px);
+      transition:opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.active{
+      opacity:1;
+      transform:none;
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(24px);
+      }
+      to{
+        opacity:1;
+        transform:none;
+      }
+    }
+
+    @keyframes bounce{
+      0%,20%,50%,80%,100%{transform:translateY(0);}
+      40%{transform:translateY(6px);}
+      60%{transform:translateY(3px);}
+    }
+
+    @media (max-width: 900px){
+      .portfolio-grid,
+      .contact-grid{
+        grid-template-columns:1fr;
+      }
+
+      .profile-card{
+        grid-template-columns:1fr;
+        text-align:center;
+      }
+    }
+
+    @media (max-width: 768px){
+      .container{
+        padding:0 16px;
+      }
+
+      .header-inner{
+        min-height:66px;
+      }
+
+      .brand-text{
+        font-size:0.98rem;
+      }
+
+      .hero{
+        padding-top:18px;
+      }
+
+      .hero-banner{
+        max-height:220px;
+      }
+
+      .section{
+        padding:36px 0;
+      }
+
+      .section-title{
+        font-size:1.5rem;
+      }
+
+      .services-track{
+        overflow:visible;
+      }
+
+      .services-grid{
+        min-width:0;
+        grid-template-columns:1fr;
+      }
+
+      .service-title{
+        min-height:auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="brand">
+        <img class="brand-logo" src="Image/Brand-Logo.jpg" alt="Dreamfly IT Logo">
+        <span class="brand-text">Dreamfly IT</span>
+      </a>
+
+      <button class="lang-btn" onclick="toggleLang()">বাংলা / English</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-card">
+        <img class="hero-banner" src="Image/hero-bg.jpg" alt="Dreamfly IT Banner">
+        
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="container">
+      <h2 class="section-title">
+        <span class="en-only" lang="en">Our Services</span>
+        <span class="bn-only" lang="bn">আমাদের সেবা সমূহ</span>
+      </h2>
+
+      <div class="services-track">
+        <div class="services-grid">
+
+          <div class="card service-card" onclick="toggle('s1')">
+            <h3 class="service-title">
+              <span class="en-only" lang="en">Graphic Design</span>
+              <span class="bn-only" lang="bn">গ্রাফিক্স ডিজাইন</span>
+            </h3>
+            <img class="service-image" src="Image/Graphics Design.jpg" alt="Graphics Design">
+            <div id="s1" class="sub-services">
+              <ul>
+                <li><span class="en-only">Logo Design</span><span class="bn-only">লোগো ডিজাইন</span></li>
+                <li><span class="en-only">Banner Design</span><span class="bn-only">ব্যানার ডিজাইন</span></li>
+                <li><span class="en-only">Social Post Design</span><span class="bn-only">সোশ্যাল পোস্ট ডিজাইন</span></li>
+                <li><span class="en-only">Cover Photo Design</span><span class="bn-only">কভার ফটো ডিজাইন</span></li>
+                <li><span class="en-only">Poster Design</span><span class="bn-only">পোস্টার ডিজাইন</span></li>
+                <li><span class="en-only">Brochure Design</span><span class="bn-only">ব্রোশিউর ডিজাইন</span></li>
+                <li><span class="en-only">Business Card Design</span><span class="bn-only">বিজনেস কার্ড ডিজাইন</span></li>
+                <li><span class="en-only">Packaging Design</span><span class="bn-only">প্যাকেজিং ডিজাইন</span></li>
+                <li><span class="en-only">Web UI Design</span><span class="bn-only">ওয়েব UI ডিজাইন</span></li>
+                <li><span class="en-only">Infographic Design</span><span class="bn-only">ইনফোগ্রাফিক ডিজাইন</span></li>
+                <li><span class="en-only">Flyer Design</span><span class="bn-only">ফ্লায়ার ডিজাইন</span></li>
+                <li><span class="en-only">Book Cover Design</span><span class="bn-only">বুক কভার ডিজাইন</span></li>
+                <li><span class="en-only">Product Design</span><span class="bn-only">প্রোডাক্ট ডিজাইন</span></li>
+                <li><span class="en-only">Ad Creative Design</span><span class="bn-only">অ্যাড ক্রিয়েটিভ ডিজাইন</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card service-card" onclick="toggle('s2')">
+            <h3 class="service-title">
+              <span class="en-only" lang="en">Video Editing</span>
+              <span class="bn-only" lang="bn">ভিডিও এডিটিং</span>
+            </h3>
+            <img class="service-image" src="Image/Video Editing.jpg" alt="Video Editing">
+            <div id="s2" class="sub-services">
+              <ul>
+                <li><span class="en-only">Video Editing</span><span class="bn-only">ভিডিও এডিটিং</span></li>
+                <li><span class="en-only">Color Grading</span><span class="bn-only">কালার গ্রেডিং</span></li>
+                <li><span class="en-only">Color Correction</span><span class="bn-only">কালার কারেকশন</span></li>
+                <li><span class="en-only">Motion Graphics</span><span class="bn-only">মোশন গ্রাফিক্স</span></li>
+                <li><span class="en-only">Transition Effects</span><span class="bn-only">ট্রানজিশন ইফেক্ট</span></li>
+                <li><span class="en-only">Text Animation</span><span class="bn-only">টেক্সট অ্যানিমেশন</span></li>
+                <li><span class="en-only">Sound Editing</span><span class="bn-only">সাউন্ড এডিটিং</span></li>
+                <li><span class="en-only">Music Add</span><span class="bn-only">মিউজিক অ্যাড</span></li>
+                <li><span class="en-only">Subtitle Add</span><span class="bn-only">সাবটাইটেল এড</span></li>
+                <li><span class="en-only">YouTube Edit</span><span class="bn-only">ইউটিউব এডিট</span></li>
+                <li><span class="en-only">Short Video Edit</span><span class="bn-only">শর্ট ভিডিও এডিট</span></li>
+                <li><span class="en-only">Corporate Edit</span><span class="bn-only">কর্পোরেট এডিট</span></li>
+                <li><span class="en-only">Promo Video</span><span class="bn-only">প্রোমো ভিডিও</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card service-card" onclick="toggle('s3')">
+            <h3 class="service-title">
+              <span class="en-only" lang="en">Motion Graphics</span>
+              <span class="bn-only" lang="bn">মোশন গ্রাফিক্স</span>
+            </h3>
+            <img class="service-image" src="Image/Motion Graphics.jpg" alt="Motion Graphics">
+            <div id="s3" class="sub-services">
+              <ul>
+                <li><span class="en-only">Motion Design</span><span class="bn-only">মোশন ডিজাইন</span></li>
+                <li><span class="en-only">Text Animation</span><span class="bn-only">টেক্সট অ্যানিমেশন</span></li>
+                <li><span class="en-only">Logo Animation</span><span class="bn-only">লোগো অ্যানিমেশন</span></li>
+                <li><span class="en-only">2D Animation</span><span class="bn-only">2D অ্যানিমেশন</span></li>
+                <li><span class="en-only">Explainer Video</span><span class="bn-only">এক্সপ্লেইনার ভিডিও</span></li>
+                <li><span class="en-only">Promo Animation</span><span class="bn-only">প্রোমো অ্যানিমেশন</span></li>
+                <li><span class="en-only">Social Animation</span><span class="bn-only">সোশ্যাল অ্যানিমেশন</span></li>
+                <li><span class="en-only">Ad Animation</span><span class="bn-only">অ্যাড অ্যানিমেশন</span></li>
+                <li><span class="en-only">Info Animation</span><span class="bn-only">ইনফো অ্যানিমেশন</span></li>
+                <li><span class="en-only">Intro / Outro</span><span class="bn-only">ইন্ট্রো/আউট্রো</span></li>
+                <li><span class="en-only">Transition Animation</span><span class="bn-only">ট্রানজিশন অ্যানিমেশন</span></li>
+                <li><span class="en-only">Brand Animation</span><span class="bn-only">ব্র্যান্ড অ্যানিমেশন</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card service-card" onclick="toggle('s4')">
+            <h3 class="service-title">
+              <span class="en-only" lang="en">Digital Marketing</span>
+              <span class="bn-only" lang="bn">ডিজিটাল মার্কেটিং</span>
+            </h3>
+            <img class="service-image" src="Image/Digital Marketing.jpg" alt="Digital Marketing">
+            <div id="s4" class="sub-services">
+              <ul>
+                <li><span class="en-only">Social Media Marketing</span><span class="bn-only">সোশ্যাল মিডিয়া মার্কেটিং</span></li>
+                <li><span class="en-only">Facebook Marketing</span><span class="bn-only">ফেসবুক মার্কেটিং</span></li>
+                <li><span class="en-only">Paid Ads</span><span class="bn-only">পেইড অ্যাডস</span></li>
+                <li><span class="en-only">Lead Generation</span><span class="bn-only">লিড জেনারেশন</span></li>
+                <li><span class="en-only">Brand Promotion</span><span class="bn-only">ব্র্যান্ড প্রোমোশন</span></li>
+                <li><span class="en-only">Online Campaign</span><span class="bn-only">অনলাইন ক্যাম্পেইন</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card service-card" onclick="toggle('s5')">
+            <h3 class="service-title">
+              <span class="en-only" lang="en">IT Support Service</span>
+              <span class="bn-only" lang="bn">আইটি সাপোর্ট সার্ভিস</span>
+            </h3>
+            <img class="service-image" src="Image/IT Support.jpg" alt="IT Support Service">
+            <div id="s5" class="sub-services">
+              <ul>
+                <li><span class="en-only">Software Installation</span><span class="bn-only">সফটওয়্যার ইনস্টলেশন</span></li>
+                <li><span class="en-only">Operating System Setup</span><span class="bn-only">অপারেটিং সিস্টেম সেটআপ</span></li>
+                <li><span class="en-only">Network Setup</span><span class="bn-only">নেটওয়ার্ক সেটআপ</span></li>
+                <li><span class="en-only">System Maintenance</span><span class="bn-only">সিস্টেম মেইনটেন্যান্স</span></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="container">
+      <h2 class="section-title">
+        <span class="en-only" lang="en">Portfolio Link</span>
+        <span class="bn-only" lang="bn">পোর্টফোলিও লিংক</span> 
+      </h2>
+
+      <div class="portfolio-grid">
+        <div class="card portfolio-card">
+          <h3>Dreamfly IT</h3>
+
+          <a class="portfolio-link" href="https://www.facebook.com/dreamflyit" target="_blank" rel="noopener noreferrer">
+  <img src="Image/Facebook.jpg" alt="Facebook" style="width:18px;height:18px;object-fit:contain;">
+  Facebook
+</a>
+
+          <a class="portfolio-link" href="https://www.fiverr.com/sobuj_05" target="_blank" rel="noopener noreferrer">
+  <img src="Image/fiverr.jpg" alt="Fiverr" style="width:18px;height:18px;object-fit:contain;">
+  Fiverr
+</a>
+
+         
+          <a class="portfolio-link" href="https://www.behance.net/sobuj05" target="_blank" rel="noopener noreferrer">
+  <img src="Image/behance.jpg" alt="Behance" style="width:18px;height:18px;object-fit:contain;">
+  Behance
+</a>
+          
+            <a class="portfolio-link" href="https://www.youtube.com/@Dreamflyit" target="_blank" rel="noopener noreferrer">
+  <img src="Image/Youtube.jpg" alt="Youtube" style="width:18px;height:18px;object-fit:contain;">
+  Youtube
+</a>
+          
+        </div>
+
+        <div class="card portfolio-card">
+          <h3>Dreamfly TV</h3>
+
+             <a class="portfolio-link" href="https://www.facebook.com/dreamflytv" target="_blank" rel="noopener noreferrer">
+  <img src="Image/Facebook.jpg" alt="Facebook" style="width:18px;height:18px;object-fit:contain;">
+  Facebook
+</a>
+
+          <a class="portfolio-link" href="https://www.youtube.com/@dreamflytv" target="_blank" rel="noopener noreferrer">
+  <img src="Image/Youtube.jpg" alt="Youtube" style="width:18px;height:18px;object-fit:contain;">
+  Youtube
+</a>
+
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="container">
+      <h2 class="section-title">
+        <span class="en-only" lang="en">Team Members</span>
+        <span class="bn-only" lang="bn">সদস্যবৃন্দ</span>
+      </h2>
+      <div class="card profile-card">
+        <img class="profile-image" src="Image/sobuj.jpeg" alt="Saidur Rahman Sobuj">
+
+        <div>
+          <h2 class="profile-name">
+            <span class="en-only" lang="en">Saidur Rahman (Sobuj)</span>
+            <span class="bn-only" lang="bn">সাইদুর রহমান (সবুজ)</span>
+          </h2>
+
+          <p class="profile-role">
+            <span class="en-only" lang="en">Graphic Designer | Video Editor | Motion Graphics Designer | IT Support Specialist</span>
+            <span class="bn-only" lang="bn">গ্রাফিক্স ডিজাইনার | ভিডিও এডিটর | মোশন গ্রাফিক্স ডিজাইনার | আইটি সাপোর্ট স্পেশালিস্ট</span>
+          </p>
+
+          <p class="profile-desc">
+            <span class="en-only" lang="en">With 7+ years of experience, I have worked with both local and international clients. I ensure high-quality and effective results through skill, creativity, and professionalism.
+Focused on delivering user-centered solutions that enhance both visual appeal and overall performance.
+</span>
+            <span class="bn-only" lang="bn">৭+ বছরের অভিজ্ঞতা নিয়ে দেশীয় ও আন্তর্জাতিক ক্লায়েন্টদের সাথে কাজ করেছি। দক্ষতা, সৃজনশীলতা এবং পেশাদারিত্বের মাধ্যমে মানসম্মত ও কার্যকর ফলাফল নিশ্চিত করি।
+ব্যবহারকারী-কেন্দ্রিক সমাধান প্রদান করে ডিজাইনকে আরও আকর্ষণীয় এবং কার্যকর করার দিকে মনোযোগী।
+</span>
+          </p>
+        </div>
+
+        
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card profile-card">
+        <img class="profile-image" src="Image/tuhin-01.jpg" alt="Saidur Rahman Sobuj">
+
+        <div>
+          <h2 class="profile-name">
+            <span class="en-only" lang="en">Imran Hasan Tuhin</span>
+            <span class="bn-only" lang="bn">ইমরান হাসান তুহিন</span>
+          </h2>
+
+          <p class="profile-role">
+            <span class="en-only" lang="en">Graphic Designer | UI/UX Designer | Web Developer </span>
+            <span class="bn-only" lang="bn">গ্রাফিক্স ডিজাইনার | UI/UX ডিজাইনার | ওয়েব ডেভেলপার</span>
+          </p>
+
+          <p class="profile-desc">
+            <span class="en-only" lang="en">Creative Graphic Designer, UI/UX Specialist, and Web Developer with 8 years of experience delivering visually engaging and user-centered digital solutions.
+Transforming ideas into seamless, high-performing experiences that blend aesthetics, functionality, and innovation.</span>
+            <span class="bn-only" lang="bn">৮ বছরের অভিজ্ঞতা সম্পন্ন গ্রাফিক ডিজাইনার, UI/UX ডিজাইনার এবং ওয়েব ডেভেলপার, যেখানে সুন্দর ডিজাইন আর সহজ ব্যবহারযোগ্যতা একসাথে নিশ্চিত করা হয়।
+আইডিয়াকে বাস্তবে রূপ দেয়া হয় আধুনিক, কার্যকরী এবং ইউজার-ফ্রেন্ডলি ডিজিটাল সমাধানের মাধ্যমে।</span>
+          </p>
+        </div>
+
+        
+      </div>
+    </div>
+
+  </section>
+
+  <section class="section reveal">
+    <div class="container">
+      <h2 class="section-title">
+        <span class="en-only" lang="en">Contact</span>
+        <span class="bn-only" lang="bn">যোগাযোগ</span>
+      </h2>
+
+      <div class="contact-card card">
+        <div class="contact-grid">
+          <a class="contact-link" href="tel:+8801911271114">
+            <i class="fa-solid fa-phone"></i>
+            <span>
+              <span class="en-only" lang="en">Call</span>
+              <span class="bn-only" lang="bn">কল করুন</span>
+            </span>
+          </a>
+
+          <a class="contact-link" href="https://wa.me/8801911271114" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>WhatsApp</span>
+          </a>
+
+          <a class="contact-link" href="https://t.me/sobuj02" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-telegram"></i>
+            <span>Telegram</span>
+          </a>
+
+          <a class="contact-link" href="mailto:dreamflyit@gmail.com?subject=Contact%20from%20Website&body=Hello,%20I%20want%20to%20contact%20you.">
+            <i class="fa-solid fa-envelope"></i>
+            <span>Email</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <span class="en-only" lang="en">© 2026 Dreamfly IT. All rights reserved.</span>
+    <span class="bn-only" lang="bn">© 2026 Dreamfly IT। সর্বস্বত্ব সংরক্ষিত।</span>
+  </footer>
+
+  <script>
+    function toggle(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.classList.toggle("show");
+    }
+
+    function toggleLang(){
+      document.body.classList.toggle("bn-mode");
+    }
+
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add("active");
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
